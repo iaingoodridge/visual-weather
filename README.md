@@ -2,13 +2,13 @@
 
 ### URL Parameters
 
-	name
+	lat (required)
 
-	lat
+	lon (required)
 
-	lon
+	token (required)
 
-	token
+	name (not currently used)
 
 
 ### Example
