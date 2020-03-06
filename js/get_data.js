@@ -20,7 +20,8 @@ function windstring(u, v) {
     return dir
 }
 
-$(document).ready(function() {
+// wait until the DOM is loaded before running this
+document.addEventListener("DOMContentLoaded", function() {
 
     // build the route for the API call using the `lat` and `lon` URL parameters
     var url = "https://api.wx.spire.com/forecast/point?lat=" + urlParams.get('lat') + "&lon=" + urlParams.get('lon') + "&time_bundle=medium_range_std_freq";
