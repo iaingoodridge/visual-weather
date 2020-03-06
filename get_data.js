@@ -23,7 +23,7 @@ function windstring(u, v) {
 $(document).ready(function() {
 
     // build the route for the API call using the `lat` and `lon` URL parameters
-    var url = "https://api.wx.spire.com/forecast/point?lat=" + urlParams.get('lat') + "&lon=" + urlParams.get('lon');
+    var url = "https://api.wx.spire.com/forecast/point?lat=" + urlParams.get('lat') + "&lon=" + urlParams.get('lon') + "&time_bundle=medium_range_std_freq";
     // execute the API call using the `token` URL parameter
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);
@@ -76,7 +76,7 @@ $(document).ready(function() {
     	var air_press_sea_level = response.data[i].values.air_pressure_at_sea_level;
     	air_press_sea_level_vals.push({
     		'Time': get_vega_time(time),
-    		'Value': air_press_sea_level / 10000
+    		'Value': air_press_sea_level // / 10000
     	});
 
     	var precip = response.data[i].values.precipitation_amount;
@@ -165,8 +165,8 @@ $(document).ready(function() {
     	build_vega_spec(
     		'Mean Sea Level Pressure',
     		{ 'values': air_press_sea_level_vals },
-            15, // warn threshold value
-    		20 // alert threshold value
+            104000, // warn threshold value
+    		103000 // alert threshold value
     	),
     	'#air_press_sea_level'
     );

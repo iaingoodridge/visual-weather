@@ -11,6 +11,10 @@ function embed_vega_spec(vega_spec, element_id) {
 }
 
 function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold_val) {
+	var tooltip = [
+		{"field": "Value","type": "quantitative"},
+		{"field": "Time","type": "ordinal"}
+	]
 	return {
 	    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
 	    "description": "The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html",
@@ -25,9 +29,11 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                        	// https://vega.github.io/vega-lite/docs/type.html
 	                        	// https://vega.github.io/vega-lite/docs/timeunit.html
 	                        	// "timeUnit": "yearmonthdatehours",
+	                        	// "type": "temporal",
+	                        	"type": "ordinal",
 	                            "field": "Time",
-	                            "type": "ordinal",
 	                            "axis": {
+	                            	"title": "Time",
 	                                "labelAngle": 0
 	                            }
 	                        },
@@ -35,14 +41,7 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                            "field": "Value",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": {
-	                        	"field": "Value",
-	                        	"type": "quantitative"
-	                        },
-	                        // "tooltip": [
-							    // {"field": "a", "type": "ordinal"},
-							    // {"field": "b", "type": "quantitative"}
-						    // ]
+	                        "tooltip": tooltip,
 	                    }
 	                },
 	            // The following block creates the YELLOW portion of the bar chart
@@ -60,17 +59,16 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                    "encoding": {
 	                        "x": {
 	                        	// "timeUnit": "yearmonthdatehours",
+	                        	// "type": "temporal",
+	                        	"type": "ordinal",
 	                            "field": "Time",
-	                            "type": "ordinal"
+
 	                        },
 	                        "y": {
 	                            "field": "warnbaseline",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": {
-	                        	"field": "Value",
-	                        	"type": "quantitative"
-	                        },
+	                        "tooltip": tooltip,
 	                        "y2": {
 	                            "field": "Value"
 	                        },
@@ -94,17 +92,15 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                    "encoding": {
 	                        "x": {
 	                        	// "timeUnit": "yearmonthdatehours",
+	                        	// "type": "temporal",
+	                        	"type": "ordinal",
 	                            "field": "Time",
-	                            "type": "ordinal"
 	                        },
 	                        "y": {
 	                            "field": "baseline",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": {
-	                        	"field": "Value",
-	                        	"type": "quantitative"
-	                        },
+	                        "tooltip": tooltip,
 	                        "y2": {
 	                            "field": "Value"
 	                        },
