@@ -31,9 +31,17 @@ document.addEventListener("DOMContentLoaded", function() {
     xmlHttp.setRequestHeader("spire-api-key", urlParams.get('token'));
     xmlHttp.send(null);
     var response = JSON.parse(xmlHttp.responseText);
+    console.log(response)
     // var name = urlParams.get('name');
     // console.log(response.data.length)
     // console.log(response.data)
+
+    var tempscale = urlParams.get('tempscale');
+    if (tempscale == null) {
+        tempscale = 'C'
+    } else {
+        tempscale = tempscale.toUpperCase();
+    }
 
     // initialize arrays to store output data
     var air_temp_vals = [];
@@ -50,12 +58,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     	var time = response.data[i].times.valid_time;
 
-    	var air_temp = response.data[i].values.air_temperature - 273.15; // Kelvin to Celsius
+        var air_temp;
+        var air_temp_kelvin = response.data[i].values.air_temperature;
+        if (tempscale == 'F') {
+            air_temp = (air_temp_kelvin - 273.15) * 9/5 + 32; // Kelvin to Fahrenheit
+        } else {
+            air_temp = air_temp_kelvin - 273.15; // Kelvin to Celsius
+        }
     	air_temp_vals.push({
     		'Time': get_vega_time(time),
     		'Value': air_temp,
     	});
 
+        var dew_point_temp;
+        var dew_point_temp_kelvin = response.data[i].values.air_temperature;
+        if (tempscale == 'F') {
+            dew_point_temp = (dew_point_temp_kelvin - 273.15) * 9/5 + 32; // Kelvin to Fahrenheit
+        } else {
+            dew_point_temp = dew_point_temp_kelvin - 273.15; // Kelvin to Celsius
+        }
     	var dew_point_temp = response.data[i].values.dew_point_temperature - 273.15; // Kelvin to Celsius
     	dew_point_temp_vals.push({
     		'Time': get_vega_time(time),
@@ -124,70 +145,70 @@ document.addEventListener("DOMContentLoaded", function() {
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Air Temperature (C)',
-    		{ 'values': air_temp_vals },
+            'Air Temperature (' + tempscale + ')',
+            { 'values': air_temp_vals },
             16, // warn threshold value
-    		20 // alert threshold value
+            20 // alert threshold value
     	),
     	'#air_temp'
     );
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Dew Point Temperature (C)',
-    		{ 'values': dew_point_temp_vals },
+            'Dew Point Temperature (' + tempscale + ')',
+            { 'values': dew_point_temp_vals },
             7, // warn threshold value
-    		9 // alert threshold value
+            9 // alert threshold value
     	),
     	'#dew_point_temp'
     );
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Wind Speed (m/s)',
-    		{ 'values': ne_wind_vals },
+            'Wind Speed (m/s)',
+            { 'values': ne_wind_vals },
             3, // warn threshold value
-    		6 // alert threshold value
+            6 // alert threshold value
     	),
     	'#ne_wind'
     );
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Relative Humidity',
-    		{ 'values': rel_hum_vals },
+            'Relative Humidity',
+            { 'values': rel_hum_vals },
             30, // warn threshold value
-    		60 // alert threshold value
+            60 // alert threshold value
     	),
     	'#rel_hum'
     );
 
    	embed_vega_spec(
     	build_vega_spec(
-    		'Mean Sea Level Pressure',
-    		{ 'values': air_press_sea_level_vals },
+            'Mean Sea Level Pressure',
+            { 'values': air_press_sea_level_vals },
             104000, // warn threshold value
-    		103000 // alert threshold value
+            103000 // alert threshold value
     	),
     	'#air_press_sea_level'
     );
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Precipitation',
-    		{ 'values': precip_vals },
+            'Precipitation',
+            { 'values': precip_vals },
             4, // warn threshold value
-    		5 // alert threshold value
+            5 // alert threshold value
     	),
     	'#precip'
     );
 
     embed_vega_spec(
     	build_vega_spec(
-    		'Wind Gust',
-    		{ 'values': wind_gust_vals },
+            'Wind Gust',
+            { 'values': wind_gust_vals },
             4, // warn threshold value
-    		5 // alert threshold value
+            5 // alert threshold value
     	),
     	'#wind_gust'
     );

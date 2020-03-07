@@ -2,13 +2,15 @@
 
 ### URL Parameters
 
-	lat (required)
+	lat (required): latitude of point forecast
 
-	lon (required)
+	lon (required): longitude of point forecast
 
-	token (required)
+	token (required): Spire Weather API token
 
-	name (not currently used)
+	tempscale (optional): "C" for Celsius or "F" for Fahrenheit (default = Celsius)
+
+	name (optional): name of location (not currently used)
 
 
 ### Example
