@@ -8,7 +8,7 @@
 
 	token (required): Spire Weather API token
 
-	tempscale (optional): "C" for Celsius or "F" for Fahrenheit (default = Celsius)
+	tempscale (optional): "C" for Celsius, "F" for Fahrenheit, "K" for Kelvin (default = Celsius)
 
 	name (optional): name of location (not currently used)
 

@@ -7,15 +7,21 @@
 	<!-- Local Scripts -->
 	<script src="js/vega_spec.js"></script>
 	<script src="js/get_data.js"></script>
-	<style>
-		body {
-			background-color: #22293d;
-		}
-		canvas {
-			width: 650px;
-		}
-	</style>
+	<script src="js/toggle_forecast.js"></script>
+	<!-- Local CSS -->
+	<link type="text/css" rel="stylesheet" href="css/main.css">
+	<link type="text/css" rel="stylesheet" href="css/toggleswitch.css">
 	<body>
+		<div id="toggle_forecast">
+			<span id="week" class="selected">Week</span>
+			<div class="switch" title="Switch Forecast">
+				<input id="forecast_switch" type="checkbox" class="switch-input">
+				<label for="toggle"><i></i></label>
+				<!-- Circle Light -->
+				<!-- <span></span> -->
+			</div>
+			<span id="day">Day</span>
+		</div>
 		<div id="ne_wind"></div>
 		<div id="wind_gust"></div>
 		<div id="air_temp"></div>

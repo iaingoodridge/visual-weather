@@ -20,11 +20,10 @@ function windstring(u, v) {
     return dir
 }
 
-// wait until the DOM is loaded before running this
-document.addEventListener("DOMContentLoaded", function() {
-
+function getPointForecast(time_bundle) {
     // build the route for the API call using the `lat` and `lon` URL parameters
-    var url = "https://api.wx.spire.com/forecast/point?lat=" + urlParams.get('lat') + "&lon=" + urlParams.get('lon') + "&time_bundle=medium_range_std_freq";
+    var url = "https://api.wx.spire.com/forecast/point?lat=" + urlParams.get('lat') + "&lon=" + urlParams.get('lon');
+    url += "&time_bundle=" + time_bundle;
     // execute the API call using the `token` URL parameter
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);
@@ -56,62 +55,65 @@ document.addEventListener("DOMContentLoaded", function() {
     // and build the output data structures
     for (var i = 0; i < response.data.length; i++) {
 
-    	var time = response.data[i].times.valid_time;
+        var time = response.data[i].times.valid_time;
 
         var air_temp;
         var air_temp_kelvin = response.data[i].values.air_temperature;
         if (tempscale == 'F') {
             air_temp = (air_temp_kelvin - 273.15) * 9/5 + 32; // Kelvin to Fahrenheit
+        } else if (tempscale == 'K') {
+            air_temp = air_temp_kelvin; // Kelvin
         } else {
             air_temp = air_temp_kelvin - 273.15; // Kelvin to Celsius
         }
-    	air_temp_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': air_temp,
-    	});
+        air_temp_vals.push({
+            'Time': get_vega_time(time),
+            'Value': air_temp,
+        });
 
         var dew_point_temp;
         var dew_point_temp_kelvin = response.data[i].values.air_temperature;
         if (tempscale == 'F') {
             dew_point_temp = (dew_point_temp_kelvin - 273.15) * 9/5 + 32; // Kelvin to Fahrenheit
+        } else if (tempscale == 'K') {
+            dew_point_temp = dew_point_temp_kelvin; // Kelvin
         } else {
             dew_point_temp = dew_point_temp_kelvin - 273.15; // Kelvin to Celsius
         }
-    	var dew_point_temp = response.data[i].values.dew_point_temperature - 273.15; // Kelvin to Celsius
-    	dew_point_temp_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': dew_point_temp,
-    	});
+        dew_point_temp_vals.push({
+            'Time': get_vega_time(time),
+            'Value': dew_point_temp,
+        });
 
-    	var ne_wind = windstring(response.data[i].values.eastward_wind, response.data[i].values.northward_wind);
-    	ne_wind_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': ne_wind,
-    	});
+        var ne_wind = windstring(response.data[i].values.eastward_wind, response.data[i].values.northward_wind);
+        ne_wind_vals.push({
+            'Time': get_vega_time(time),
+            'Value': ne_wind,
+        });
 
-    	var rel_hum = response.data[i].values.relative_humidity;
-    	rel_hum_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': rel_hum, // Math.round(rel_hum / 10)
-    	});
+        var rel_hum = response.data[i].values.relative_humidity;
+        rel_hum_vals.push({
+            'Time': get_vega_time(time),
+            'Value': rel_hum, // Math.round(rel_hum / 10)
+        });
 
-    	var air_press_sea_level = response.data[i].values.air_pressure_at_sea_level;
-    	air_press_sea_level_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': air_press_sea_level // / 10000
-    	});
+        var air_press_sea_level = response.data[i].values.air_pressure_at_sea_level;
+        air_press_sea_level_vals.push({
+            'Time': get_vega_time(time),
+            'Value': air_press_sea_level // / 10000
+        });
 
-    	var precip = response.data[i].values.precipitation_amount;
-    	precip_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': precip,
-    	});
+        var precip = response.data[i].values.precipitation_amount;
+        precip_vals.push({
+            'Time': get_vega_time(time),
+            'Value': precip,
+        });
 
-    	var wind_gust = response.data[i].values.wind_gust;
-    	wind_gust_vals.push({
-    		'Time': get_vega_time(time),
-    		'Value': wind_gust,
-    	});
+        var wind_gust = response.data[i].values.wind_gust;
+        wind_gust_vals.push({
+            'Time': get_vega_time(time),
+            'Value': wind_gust,
+        });
 
         // ------------------------------------------------------------------------------------------------------------
 
@@ -144,72 +146,77 @@ document.addEventListener("DOMContentLoaded", function() {
     ////////////////////////////////////////////////
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Air Temperature (' + tempscale + ')',
             { 'values': air_temp_vals },
             16, // warn threshold value
             20 // alert threshold value
-    	),
-    	'#air_temp'
+        ),
+        '#air_temp'
     );
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Dew Point Temperature (' + tempscale + ')',
             { 'values': dew_point_temp_vals },
             7, // warn threshold value
             9 // alert threshold value
-    	),
-    	'#dew_point_temp'
+        ),
+        '#dew_point_temp'
     );
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Wind Speed (m/s)',
             { 'values': ne_wind_vals },
             3, // warn threshold value
             6 // alert threshold value
-    	),
-    	'#ne_wind'
+        ),
+        '#ne_wind'
     );
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Relative Humidity',
             { 'values': rel_hum_vals },
             30, // warn threshold value
             60 // alert threshold value
-    	),
-    	'#rel_hum'
+        ),
+        '#rel_hum'
     );
 
-   	embed_vega_spec(
-    	build_vega_spec(
+    embed_vega_spec(
+        build_vega_spec(
             'Mean Sea Level Pressure',
             { 'values': air_press_sea_level_vals },
             104000, // warn threshold value
             103000 // alert threshold value
-    	),
-    	'#air_press_sea_level'
+        ),
+        '#air_press_sea_level'
     );
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Precipitation',
             { 'values': precip_vals },
             4, // warn threshold value
             5 // alert threshold value
-    	),
-    	'#precip'
+        ),
+        '#precip'
     );
 
     embed_vega_spec(
-    	build_vega_spec(
+        build_vega_spec(
             'Wind Gust',
             { 'values': wind_gust_vals },
             4, // warn threshold value
             5 // alert threshold value
-    	),
-    	'#wind_gust'
+        ),
+        '#wind_gust'
     );
+}
+
+// wait until the DOM is loaded before running this
+document.addEventListener("DOMContentLoaded", function() {
+    getPointForecast("medium_range_std_freq");
 })
