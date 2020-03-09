@@ -8,6 +8,8 @@
 
 	token (required): Spire Weather API token
 
+	bundle (optional): "basic" or "maritime" (default = basic)
+
 	tempscale (optional): "C" for Celsius, "F" for Fahrenheit, "K" for Kelvin (default = Celsius)
 
 	name (optional): name of location (not currently used)

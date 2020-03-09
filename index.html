@@ -6,6 +6,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 	<!-- Local Scripts -->
 	<script src="js/vega_spec.js"></script>
+	<script src="js/parse_data.js"></script>
 	<script src="js/get_data.js"></script>
 	<script src="js/toggle_forecast.js"></script>
 	<!-- Local CSS -->
@@ -22,12 +23,20 @@
 			</div>
 			<span id="day">Day</span>
 		</div>
-		<div id="ne_wind"></div>
-		<div id="wind_gust"></div>
-		<div id="air_temp"></div>
-		<div id="dew_point_temp"></div>
-	    <div id="rel_hum"></div>
-	    <div id="precip"></div>
-	    <div id="air_press_sea_level"></div>
+		<div id="basic_graphs">
+			<div id="ne_wind"></div>
+			<div id="wind_gust"></div>
+			<div id="air_temp"></div>
+			<div id="dew_point_temp"></div>
+			<div id="rel_hum"></div>
+			<div id="precip"></div>
+			<div id="air_press_sea_level"></div>
+		</div>
+		<div id="maritime_graphs">
+			<div id="sea_surface_temp"></div>
+			<div id="wave_height"></div>
+			<div id="northward_sea_velocity"></div>
+			<div id="eastward_sea_velocity"></div>
+		</div>
 	</body>
 </html>
