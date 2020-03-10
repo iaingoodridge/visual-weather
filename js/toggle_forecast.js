@@ -3,14 +3,16 @@ function switchChange(evt, elem) {
 	if (elem == null) {
 		elem = evt.target;
 	}
+	elem.style.cursor = 'progress';
+	document.body.style.cursor = 'progress';
 	if (elem.checked) {
-		document.getElementById("day").className = "selected";
-		document.getElementById("week").className = "";
-		getPointForecast("short_range_high_freq");
+		document.getElementById('day').className = 'selected';
+		document.getElementById('week').className = '';
+		getPointForecast('short_range_high_freq');
 	} else {
-		document.getElementById("day").className = "";
-		document.getElementById("week").className = "selected";
-		getPointForecast("medium_range_std_freq");
+		document.getElementById('day').className = '';
+		document.getElementById('week').className = 'selected';
+		getPointForecast('medium_range_std_freq');
 	}
 }
 
