@@ -67,11 +67,11 @@ function getPointForecast(time_bundle) {
                     // add Basic Bundle variables
                     air_temp_vals.push({
                         'Time': get_vega_time(time),
-                        'Value': parse_temperature(response.data[i].values.air_temperature, tempscale),
+                        'Value': parse_temperature(response.data[i].values.air_temperature, tempscale)
                     });
                     dew_point_temp_vals.push({
                         'Time': get_vega_time(time),
-                        'Value': parse_temperature(response.data[i].values.dew_point_temperature, tempscale),
+                        'Value': parse_temperature(response.data[i].values.dew_point_temperature, tempscale)
                     });
                     ne_wind_vals.push({
                         'Time': get_vega_time(time),
@@ -82,19 +82,19 @@ function getPointForecast(time_bundle) {
                     });
                     rel_hum_vals.push({
                         'Time': get_vega_time(time),
-                        'Value': response.data[i].values.relative_humidity,
+                        'Value': response.data[i].values.relative_humidity
                     });
                     air_press_sea_level_vals.push({
                         'Time': get_vega_time(time),
                         'Value': response.data[i].values.air_pressure_at_sea_level
                     });
-                    precip_vals.push({
-                        'Time': get_vega_time(time),
-                        'Value': response.data[i].values.precipitation_amount,
-                    });
                     wind_gust_vals.push({
                         'Time': get_vega_time(time),
-                        'Value': response.data[i].values.wind_gust,
+                        'Value': response.data[i].values.wind_gust
+                    });
+                    precip_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': parse_precipitation(response.data, i)
                     });
                 }
 
@@ -102,7 +102,7 @@ function getPointForecast(time_bundle) {
                     // add Maritime Bundle variables
                     sea_surface_temp_vals.push({
                         'Time': get_vega_time(time),
-                        'Value': parse_temperature(response.data[i].values.sea_surface_temperature, tempscale),
+                        'Value': parse_temperature(response.data[i].values.sea_surface_temperature, tempscale)
                     });
                     wave_height_vals.push({
                         'Time': get_vega_time(time),
