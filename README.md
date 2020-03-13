@@ -8,7 +8,7 @@
 
 	token (required): Spire Weather API token
 
-	bundle (optional): "basic" or "maritime" (default = basic)
+	bundles (optional): "basic,maritime,renewable-energy" or a subset of the three (default = basic)
 
 	tempscale (optional): "C" for Celsius, "F" for Fahrenheit, "K" for Kelvin (default = Celsius)
 

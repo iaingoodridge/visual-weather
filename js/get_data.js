@@ -14,7 +14,7 @@ function getPointForecast(time_bundle) {
     // specify the forecast time settings
     url += '&time_bundle=' + time_bundle;
     // specify the weather bundles
-    var bundles = urlParams.get('bundle');
+    var bundles = urlParams.get('bundles');
     if (bundles == null) {
         bundles = 'basic';
     }
@@ -22,10 +22,11 @@ function getPointForecast(time_bundle) {
     // set boolean flags indicating which bundles are specified
     var BASIC = bundles.indexOf('basic') != -1;
     var MARITIME = bundles.indexOf('maritime') != -1;
+    var RENEWABLE = bundles.indexOf('renewable-energy') != -1;
     // TODO: support both!
-    if (BASIC) {
-        MARITIME = false;
-    }
+    // if (BASIC) {
+    //     MARITIME = false;
+    // }
 
     fetch(url, {headers:{'spire-api-key':urlParams.get('token')}})
         .then((rawresp) => {
@@ -56,6 +57,12 @@ function getPointForecast(time_bundle) {
             var wave_height_vals = [];
             var northward_sea_velocity_vals = [];
             var eastward_sea_velocity_vals = [];
+            // renewable-energy
+            var re_air_temp_vals = [];
+            var ne_wind_80m_vals = [];
+            var ne_wind_100m_vals = [];
+            var ne_wind_120m_vals = [];
+            var surface_net_downward_shortwave_flux_vals = [];
 
             // iterate through the API response data
             // and build the output data structures
@@ -117,6 +124,40 @@ function getPointForecast(time_bundle) {
                         'Value': response.data[i].values.eastward_sea_water_velocity
                     });
                 }
+
+                if (RENEWABLE) {
+                    // add Renewable Energy Bundle variables
+                    re_air_temp_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': parse_temperature(response.data[i].values.air_temperature, tempscale)
+                    });
+                    ne_wind_80m_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': parse_and_combine_velocity_vectors(
+                            response.data[i].values.eastward_wind_80m,
+                            response.data[i].values.northward_wind_80m
+                        ),
+                    });
+                    ne_wind_100m_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': parse_and_combine_velocity_vectors(
+                            response.data[i].values.eastward_wind_100m,
+                            response.data[i].values.northward_wind_100m
+                        ),
+                    });
+                    ne_wind_120m_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': parse_and_combine_velocity_vectors(
+                            response.data[i].values.eastward_wind_120m,
+                            response.data[i].values.northward_wind_120m
+                        ),
+                    });
+                    surface_net_downward_shortwave_flux_vals.push({
+                        'Time': get_vega_time(time),
+                        'Value': response.data[i].values.surface_net_downward_shortwave_flux
+                    });
+                }
+
             }
 
             ////////////////////////////////////////////////
@@ -227,6 +268,54 @@ function getPointForecast(time_bundle) {
                         0.2 // alert threshold value
                     ),
                     '#eastward_sea_velocity'
+                );
+            }
+
+            if (RENEWABLE) {
+                embed_vega_spec(
+                    build_vega_spec(
+                        'Air Temperature (' + tempscale + ')',
+                        { 'values': re_air_temp_vals },
+                        16, // warn threshold value
+                        20 // alert threshold value
+                    ),
+                    '#re_air_temp'
+                );
+                embed_vega_spec(
+                    build_vega_spec(
+                        '80m Wind Speed (m/s)',
+                        { 'values': ne_wind_80m_vals },
+                        3, // warn threshold value
+                        6 // alert threshold value
+                    ),
+                    '#ne_wind_80m'
+                );
+                embed_vega_spec(
+                    build_vega_spec(
+                        '100m Wind Speed (m/s)',
+                        { 'values': ne_wind_100m_vals },
+                        3, // warn threshold value
+                        6 // alert threshold value
+                    ),
+                    '#ne_wind_100m'
+                );
+                embed_vega_spec(
+                    build_vega_spec(
+                        '120m Wind Speed (m/s)',
+                        { 'values': ne_wind_120m_vals },
+                        3, // warn threshold value
+                        6 // alert threshold value
+                    ),
+                    '#ne_wind_120m'
+                );
+                embed_vega_spec(
+                    build_vega_spec(
+                        'Surface Net Downward Shortwave Flux',
+                        { 'values': surface_net_downward_shortwave_flux_vals },
+                        100000000, // warn threshold value
+                        115000000 // alert threshold value
+                    ),
+                    '#surface_net_downward_shortwave_flux'
                 );
             }
             // reset cursor from spinning wheel to default
