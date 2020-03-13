@@ -287,15 +287,19 @@ function getPointForecast(time_bundle) {
             }
 
             if (RENEWABLE && !CUSTOM) {
-                embed_vega_spec(
-                    build_vega_spec(
-                        'Air Temperature (' + tempscale + ')',
-                        { 'values': re_air_temp_vals },
-                        16, // warn threshold value
-                        20 // alert threshold value
-                    ),
-                    '#re_air_temp'
-                );
+                if (!BASIC) {
+                    // the basic bundle already includes this variable
+                    // so don't show it twice if `basic` is specified too
+                    embed_vega_spec(
+                        build_vega_spec(
+                            'Air Temperature (' + tempscale + ')',
+                            { 'values': re_air_temp_vals },
+                            16, // warn threshold value
+                            20 // alert threshold value
+                        ),
+                        '#re_air_temp'
+                    );
+                }
                 embed_vega_spec(
                     build_vega_spec(
                         '80m Wind Speed (m/s)',

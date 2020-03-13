@@ -44,7 +44,10 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                            "field": "Value",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": tooltip,
+	                        "color": {
+	                            "value": "#264f38" // green
+	                        },
+	                        "tooltip": tooltip
 	                    }
 	                },
 	            // The following block creates the YELLOW portion of the bar chart
@@ -71,13 +74,13 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                            "field": "warnbaseline",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": tooltip,
 	                        "y2": {
 	                            "field": "Value"
 	                        },
 	                        "color": {
-	                            "value": "#fff000" // yellow
-	                        }
+	                            "value": "#ffdd26" // yellow
+	                        },
+	                        "tooltip": tooltip
 	                    }
 	                },
 	            // The following block creates the RED portion of the bar chart
@@ -103,13 +106,13 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                            "field": "baseline",
 	                            "type": "quantitative"
 	                        },
-	                        "tooltip": tooltip,
 	                        "y2": {
 	                            "field": "Value"
 	                        },
 	                        "color": {
-	                            "value": "#e45755" // red
-	                        }
+	                            "value": "#ce2c3b" // red
+	                        },
+	                       	"tooltip": tooltip
 	                    }
 	                },
 	            ]
