@@ -308,15 +308,15 @@ function getPointForecast(time_bundle) {
                     ),
                     '#ne_wind_120m'
                 );
-                embed_vega_spec(
-                    build_vega_spec(
-                        'Surface Net Downward Shortwave Flux',
-                        { 'values': surface_net_downward_shortwave_flux_vals },
-                        100000000, // warn threshold value
-                        115000000 // alert threshold value
-                    ),
-                    '#surface_net_downward_shortwave_flux'
-                );
+                // embed_vega_spec(
+                //     build_vega_spec(
+                //         'Surface Net Downward Shortwave Flux',
+                //         { 'values': surface_net_downward_shortwave_flux_vals },
+                //         100000000, // warn threshold value
+                //         115000000 // alert threshold value
+                //     ),
+                //     '#surface_net_downward_shortwave_flux'
+                // );
             }
             // reset cursor from spinning wheel to default
             document.getElementById('forecast_switch').style.cursor = 'pointer';
