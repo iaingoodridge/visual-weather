@@ -17,7 +17,10 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	]
 	return {
 	    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-	    "description": "The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html",
+		"title": {
+			"text": y_axis_title
+		},
+	    "description": "",
 	    "layer": [
 	        {
 	            "data": data,

@@ -1,12 +1,18 @@
 body {
 	background-color: #22293d;
 	font-family: monospace;
+	color: #ffffff;
 }
 canvas {
-	/*width: 650px;*/
+	margin-bottom: 40px;
 }
-.graphs {
-	display: inline-block;
+#forecast_info {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 30px;
+}
+#forecast_loc_name {
+	font-size: 150%;
 }
 #day,
 #week {
