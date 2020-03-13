@@ -180,6 +180,7 @@ function getPointForecast(time_bundle) {
             //// Embed the Vega visualizations into the DOM
             ////////////////////////////////////////////////
             ////////////////////////////////////////////////
+            var color_scheme = urlParams.get('color_scheme');
 
             if (BASIC && !CUSTOM) {
                 embed_vega_spec(
@@ -187,7 +188,8 @@ function getPointForecast(time_bundle) {
                         'Air Temperature (' + tempscale + ')',
                         { 'values': air_temp_vals },
                         16, // warn threshold value
-                        20 // alert threshold value
+                        20, // alert threshold value
+                        color_scheme
                     ),
                     '#air_temp'
                 );
@@ -196,7 +198,8 @@ function getPointForecast(time_bundle) {
                         'Dew Point Temperature (' + tempscale + ')',
                         { 'values': dew_point_temp_vals },
                         7, // warn threshold value
-                        9 // alert threshold value
+                        9, // alert threshold value
+                        color_scheme
                     ),
                     '#dew_point_temp'
                 );
@@ -205,7 +208,8 @@ function getPointForecast(time_bundle) {
                         '10m Wind Speed (m/s)',
                         { 'values': ne_wind_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind'
                 );
@@ -214,7 +218,8 @@ function getPointForecast(time_bundle) {
                         'Relative Humidity (%)',
                         { 'values': rel_hum_vals },
                         30, // warn threshold value
-                        60 // alert threshold value
+                        60, // alert threshold value
+                        color_scheme
                     ),
                     '#rel_hum'
                 );
@@ -223,7 +228,8 @@ function getPointForecast(time_bundle) {
                         'Mean Sea Level Pressure (Pa)',
                         { 'values': air_press_sea_level_vals },
                         104000, // warn threshold value
-                        103000 // alert threshold value
+                        103000, // alert threshold value
+                        color_scheme
                     ),
                     '#air_press_sea_level'
                 );
@@ -232,7 +238,8 @@ function getPointForecast(time_bundle) {
                         'Precipitation (kg m-2)',
                         { 'values': precip_vals },
                         4, // warn threshold value
-                        5 // alert threshold value
+                        5, // alert threshold value
+                        color_scheme
                     ),
                     '#precip'
                 );
@@ -241,7 +248,8 @@ function getPointForecast(time_bundle) {
                         '10m Wind Gust (m/s)',
                         { 'values': wind_gust_vals },
                         4, // warn threshold value
-                        5 // alert threshold value
+                        5, // alert threshold value
+                        color_scheme
                     ),
                     '#wind_gust'
                 );
@@ -253,7 +261,8 @@ function getPointForecast(time_bundle) {
                         'Sea Surface Temperature (' + tempscale + ')',
                         { 'values': sea_surface_temp_vals },
                         10, // warn threshold value
-                        15 // alert threshold value
+                        15, // alert threshold value
+                        color_scheme
                     ),
                     '#sea_surface_temp'
                 );
@@ -262,7 +271,8 @@ function getPointForecast(time_bundle) {
                         'Significant Wave Height (m)',
                         { 'values': wave_height_vals },
                         4, // warn threshold value
-                        5 // alert threshold value
+                        5, // alert threshold value
+                        color_scheme
                     ),
                     '#wave_height'
                 );
@@ -271,7 +281,8 @@ function getPointForecast(time_bundle) {
                         'Northward Ocean Currents (m/s)', // (m/s) ?
                         { 'values': northward_sea_velocity_vals },
                         0.15, // warn threshold value
-                        0.2 // alert threshold value
+                        0.2, // alert threshold value
+                        color_scheme
                     ),
                     '#northward_sea_velocity'
                 );
@@ -280,7 +291,8 @@ function getPointForecast(time_bundle) {
                         'Eastward Ocean Currents (m/s)', // (m/s) ?
                         { 'values': eastward_sea_velocity_vals },
                         0.15, // warn threshold value
-                        0.2 // alert threshold value
+                        0.2, // alert threshold value
+                        color_scheme
                     ),
                     '#eastward_sea_velocity'
                 );
@@ -295,7 +307,8 @@ function getPointForecast(time_bundle) {
                             'Air Temperature (' + tempscale + ')',
                             { 'values': re_air_temp_vals },
                             16, // warn threshold value
-                            20 // alert threshold value
+                            20, // alert threshold value
+                            color_scheme
                         ),
                         '#re_air_temp'
                     );
@@ -305,7 +318,8 @@ function getPointForecast(time_bundle) {
                         '80m Wind Speed (m/s)',
                         { 'values': ne_wind_80m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_80m'
                 );
@@ -314,7 +328,8 @@ function getPointForecast(time_bundle) {
                         '100m Wind Speed (m/s)',
                         { 'values': ne_wind_100m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_100m'
                 );
@@ -323,7 +338,8 @@ function getPointForecast(time_bundle) {
                         '120m Wind Speed (m/s)',
                         { 'values': ne_wind_120m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_120m'
                 );
@@ -332,7 +348,8 @@ function getPointForecast(time_bundle) {
                         'Surface Net Downward Shortwave Flux',
                         { 'values': surface_net_downward_shortwave_flux_vals },
                         100000000, // warn threshold value
-                        115000000 // alert threshold value
+                        115000000, // alert threshold value
+                        color_scheme
                     ),
                     '#surface_net_downward_shortwave_flux'
                 );
@@ -345,7 +362,8 @@ function getPointForecast(time_bundle) {
                         'Air Temperature (' + tempscale + ')',
                         { 'values': air_temp_vals },
                         16, // warn threshold value
-                        20 // alert threshold value
+                        20, // alert threshold value
+                        color_scheme
                     ),
                     '#air_temp'
                 );
@@ -354,7 +372,8 @@ function getPointForecast(time_bundle) {
                         'Dew Point Temperature (' + tempscale + ')',
                         { 'values': dew_point_temp_vals },
                         7, // warn threshold value
-                        9 // alert threshold value
+                        9, // alert threshold value
+                        color_scheme
                     ),
                     '#dew_point_temp'
                 );
@@ -363,7 +382,8 @@ function getPointForecast(time_bundle) {
                         'Relative Humidity (%)',
                         { 'values': rel_hum_vals },
                         30, // warn threshold value
-                        60 // alert threshold value
+                        60, // alert threshold value
+                        color_scheme
                     ),
                     '#rel_hum'
                 );
@@ -372,7 +392,8 @@ function getPointForecast(time_bundle) {
                         'Precipitation (kg m-2)',
                         { 'values': precip_vals },
                         4, // warn threshold value
-                        5 // alert threshold value
+                        5, // alert threshold value
+                        color_scheme
                     ),
                     '#precip'
                 );
@@ -381,7 +402,8 @@ function getPointForecast(time_bundle) {
                         '10m Wind Gust (m/s)',
                         { 'values': wind_gust_vals },
                         4, // warn threshold value
-                        5 // alert threshold value
+                        5, // alert threshold value
+                        color_scheme
                     ),
                     '#wind_gust'
                 );
@@ -390,7 +412,8 @@ function getPointForecast(time_bundle) {
                         '10m Wind Speed (m/s)',
                         { 'values': ne_wind_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind'
                 );
@@ -400,7 +423,8 @@ function getPointForecast(time_bundle) {
                         '80m Wind Speed (m/s)',
                         { 'values': ne_wind_80m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_80m'
                 );
@@ -409,7 +433,8 @@ function getPointForecast(time_bundle) {
                         '100m Wind Speed (m/s)',
                         { 'values': ne_wind_100m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_100m'
                 );
@@ -418,7 +443,8 @@ function getPointForecast(time_bundle) {
                         '120m Wind Speed (m/s)',
                         { 'values': ne_wind_120m_vals },
                         3, // warn threshold value
-                        6 // alert threshold value
+                        6, // alert threshold value
+                        color_scheme
                     ),
                     '#ne_wind_120m'
                 );
