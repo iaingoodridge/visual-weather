@@ -235,7 +235,7 @@ function getPointForecast(time_bundle) {
                 );
                 embed_vega_spec(
                     build_vega_spec(
-                        'Precipitation (kg m-2)',
+                        'Precipitation (kg/m2)',
                         { 'values': precip_vals },
                         4, // warn threshold value
                         5, // alert threshold value
@@ -389,7 +389,7 @@ function getPointForecast(time_bundle) {
                 );
                 embed_vega_spec(
                     build_vega_spec(
-                        'Precipitation (kg m-2)',
+                        'Precipitation (kg/m2)',
                         { 'values': precip_vals },
                         4, // warn threshold value
                         5, // alert threshold value
