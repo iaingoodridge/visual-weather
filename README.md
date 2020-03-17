@@ -8,11 +8,13 @@
 
 	token (required): Spire Weather API token
 
+	name (optional): name of location
+
 	bundles (optional): "basic,maritime,renewable-energy" or a subset of the three (default = basic)
 
 	tempscale (optional): "C" for Celsius, "F" for Fahrenheit, "K" for Kelvin (default = Celsius)
 
-	name (optional): name of location (not currently used)
+	units (optional): "imperial" for Imperial (including Fahrenheit), otherwise Metric
 
 
 ### Example
