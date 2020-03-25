@@ -32,16 +32,24 @@ function parse_precipitation(data, units) {
     return data;
 }
 
-// combine eastward_wind and northward_wind vector components
-function parse_and_combine_velocity_vectors(u, v) {
-    var dir = ""
-    if (Math.abs(u) < 0.001 && Math.abs(v) < 0.001) {
-        dir = 0
+// get wind (or ocean currents) speed from U and V velocity components
+function get_speed_from_u_v(u, v) {
+    return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2))
+}
+
+// get wind (or ocean currents) direction from U and V velocity components
+function get_direction_from_u_v(u, v) {
+    // Meteorological wind direction
+    //   90° corresponds to wind from east,
+    //   180° from south
+    //   270° from west
+    //   360° wind from north.
+    //   0° is used for no wind.
+    if ((u, v) == (0.0, 0.0)) {
+        return 0.0
     } else {
-        dir = Math.round(Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2)));
-        //dir = Math.round(Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2))) + "mph, direction " + Math.round(Math.atan2(u, v) * ((180 / Math.PI) + 180));
+        return (180.0 / Math.PI) * Math.atan2(u, v) + 180.0;
     }
-    return dir;
 }
 
 // subtract previous data value from current value
