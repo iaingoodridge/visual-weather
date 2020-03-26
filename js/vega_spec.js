@@ -49,7 +49,7 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                        	"type": "ordinal",
 	                            "field": "Time",
 	                            "axis": {
-	                            	"title": "Time",
+	                            	"title": "Time  (UTC)",
 	                                "labelAngle": 0
 	                            }
 	                        },
