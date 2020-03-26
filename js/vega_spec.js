@@ -13,7 +13,7 @@ function embed_vega_spec(vega_spec, element_id) {
 function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold_val, color_scheme) {
 	var tooltip = [
 		{"field": "Value","type": "quantitative"},
-		{"field": "Time","type": "ordinal", "timeUnit": "yearmonthdatehours"}
+		{"field": "Time","type": "ordinal"}
 	];
 	var color_ok;
 	var color_warn;
@@ -46,7 +46,6 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                        	// https://vega.github.io/vega-lite/docs/timeunit.html
 	                        	// "timeUnit": "yearmonthdatehours",
 	                        	// "type": "temporal",
-	                        	"timeUnit": "monthdatehours",
 	                        	"type": "ordinal",
 	                            "field": "Time",
 	                            "axis": {
@@ -80,7 +79,6 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                        "x": {
 	                        	// "timeUnit": "yearmonthdatehours",
 	                        	// "type": "temporal",
-	                        	"timeUnit": "monthdatehours",
 	                        	"type": "ordinal",
 	                            "field": "Time",
 
@@ -114,7 +112,6 @@ function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold
 	                        "x": {
 	                        	// "timeUnit": "yearmonthdatehours",
 	                        	// "type": "temporal",
-	                        	"timeUnit": "monthdatehours",
 	                        	"type": "ordinal",
 	                            "field": "Time",
 	                        },

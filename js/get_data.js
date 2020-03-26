@@ -472,8 +472,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         'Air Temperature (' + tempscale + ')',
                         { 'values': air_temp_vals },
-                        16, // warn threshold value
-                        20, // alert threshold value
+                        null, // warn threshold value
+                        null, // alert threshold value
                         color_scheme
                     ),
                     '#air_temp'
@@ -482,8 +482,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         'Dew Point Temperature (' + tempscale + ')',
                         { 'values': dew_point_temp_vals },
-                        7, // warn threshold value
-                        9, // alert threshold value
+                        null, // warn threshold value
+                        null, // alert threshold value
                         color_scheme
                     ),
                     '#dew_point_temp'
@@ -492,8 +492,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         'Relative Humidity (%)',
                         { 'values': rel_hum_vals },
-                        30, // warn threshold value
-                        60, // alert threshold value
+                        null, // warn threshold value
+                        null, // alert threshold value
                         color_scheme
                     ),
                     '#rel_hum'
