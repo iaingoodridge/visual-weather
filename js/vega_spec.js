@@ -13,7 +13,7 @@ function embed_vega_spec(vega_spec, element_id) {
 function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold_val, color_scheme) {
 	var tooltip = [
 		{"field": "Value","type": "quantitative"},
-		{"field": "Time","type": "ordinal", "timeUnit": "yearmonthdatehours",}
+		{"field": "Time","type": "ordinal", "timeUnit": "yearmonthdatehours", "title": "Time (UTC)"}
 	];
 	var color_ok;
 	var color_warn;
