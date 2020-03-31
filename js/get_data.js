@@ -67,7 +67,7 @@ function getPointForecast(time_bundle) {
             var unitsystem = urlParams.get('units');
             if (unitsystem != null && unitsystem.toLowerCase() == 'imperial') {
                 unitsystem = 'imperial';
-                precipunits = 'lb/sqft';
+                precipunits = 'in';
                 heightunits = 'ft';
                 speedunits = 'knots';
                 // specify Fahrenheit here as well

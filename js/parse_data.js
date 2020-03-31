@@ -26,8 +26,13 @@ function parse_height(data, units) {
 }
 
 function parse_precipitation(data, units) {
-    if (units == 'lb/sqft') {
-        data = data * 0.204816; // kg/m2 to lb/sqft
+    // if (units == 'lb/sqft') {
+    //     data = data * 0.204816; // kg/m2 to lb/sqft
+    // }
+    if (units == 'imperial') {
+        // kg/m2 = mm for liquid precipitation
+        // so here we convert from mm to in
+        data = data * 0.0393701;
     }
     return data;
 }
