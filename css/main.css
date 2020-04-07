@@ -7,9 +7,20 @@ canvas {
 	margin-bottom: 40px;
 }
 #forecast_info {
-	margin-top: 10px;
-	margin-left: 10px;
+	position: fixed;
+	background-color: #22293d;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	padding-left: 20px;
 	margin-bottom: 30px;
+	width: 100%;
+	z-index: 2000;
+	height: 60px;
+}
+#graphs {
+	margin-top: 100px;
+	margin-left: 10px;
 }
 #forecast_loc_name {
 	font-size: 150%;
@@ -33,7 +44,7 @@ canvas {
 }
 #toggle_forecast {
 	position: fixed;
-	z-index: 1001;
+	z-index: 2001;
 	top: -10px;
 	right: -15px;
 	width: 180px;
