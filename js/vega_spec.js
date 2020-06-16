@@ -7,7 +7,8 @@ function embed_vega_spec(vega_spec, element_id) {
 		"axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
 	};
 	// embed the Vega visualization to an HTML element
-	vegaEmbed(element_id, vega_spec, {config: theme});
+	vegaEmbed(element_id, vega_spec, {config: theme, actions: false});
+	// https://vegawidget.github.io/vegawidget/reference/vega_embed.html
 }
 
 function build_vega_spec(y_axis_title, data, warn_threshold_val, alert_threshold_val, color_scheme) {
