@@ -502,8 +502,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         'Precipitation (' + precipunits + ')',
                         { 'values': precip_vals },
-                        4, // warn threshold value
-                        5, // alert threshold value
+                        2, // warn threshold value
+                        4, // alert threshold value
                         color_scheme
                     ),
                     '#precip'
@@ -512,8 +512,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         (unitsystem == 'metric' ? '10m Wind Gust' : '30ft Wind Gust') + ' (' + speedunits + ')',
                         { 'values': wind_gust_vals },
-                        4, // warn threshold value
-                        5, // alert threshold value
+                        25, // warn threshold value
+                        35, // alert threshold value
                         color_scheme
                     ),
                     '#wind_gust'
@@ -522,8 +522,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         (unitsystem == 'metric' ? '10m Wind Speed' : '30ft Wind Speed') + ' (' + speedunits + ')',
                         { 'values': wind_speed_vals },
-                        3, // warn threshold value
-                        6, // alert threshold value
+                        25, // warn threshold value
+                        35, // alert threshold value
                         color_scheme
                     ),
                     '#wind_speed'
@@ -543,8 +543,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         (unitsystem == 'metric' ? '80m Wind Speed' : '260ft Wind Speed') + ' (' + speedunits + ')',
                         { 'values': wind_speed_80m_vals },
-                        3, // warn threshold value
-                        6, // alert threshold value
+                        25, // warn threshold value
+                        35, // alert threshold value
                         color_scheme
                     ),
                     '#wind_speed_80m'
@@ -563,8 +563,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         (unitsystem == 'metric' ? '100m Wind Speed' : '330ft Wind Speed') + ' (' + speedunits + ')',
                         { 'values': wind_speed_100m_vals },
-                        3, // warn threshold value
-                        6, // alert threshold value
+                        25, // warn threshold value
+                        35, // alert threshold value
                         color_scheme
                     ),
                     '#wind_speed_100m'
@@ -583,8 +583,8 @@ function getPointForecast(time_bundle) {
                     build_vega_spec(
                         (unitsystem == 'metric' ? '120m Wind Speed' : '390ft Wind Speed') + ' (' + speedunits + ')',
                         { 'values': wind_speed_120m_vals },
-                        3, // warn threshold value
-                        6, // alert threshold value
+                        25, // warn threshold value
+                        35, // alert threshold value
                         color_scheme
                     ),
                     '#wind_speed_120m'
