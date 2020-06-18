@@ -647,8 +647,8 @@ function getAirColumnForecast(time_bundle, lat, lon) {
                 build_vega_spec(
                     'Max Wind Speed 0 to 3000 ft (' + speedunits + ')',
                     { 'values': max_wind_speed_within_air_column_vals },
-                    16, // warn threshold value
-                    20, // alert threshold value
+                    45, // warn threshold value
+                    55, // alert threshold value
                     color_scheme
                 ),
                 '#max_wind_speed_within_air_column'
